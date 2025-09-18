@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn/UI Colors */
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #0a0a0a;
+
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0a0a0a;
+
+  --color-primary: #171717;
+  --color-primary-foreground: #fafafa;
+
+  --color-secondary: #f5f5f5;
+  --color-secondary-foreground: #171717;
+
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+
+  --color-accent: #f5f5f5;
+  --color-accent-foreground: #171717;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+  --color-ring: #0a0a0a;
+
+  --color-chart-1: #e67e22;
+  --color-chart-2: #2d8659;
+  --color-chart-3: #1e3a5f;
+  --color-chart-4: #f1c40f;
+  --color-chart-5: #e74c3c;
+
+  --color-sidebar: #f7f7f7;
+  --color-sidebar-foreground: #404040;
+  --color-sidebar-primary: #1a1a1a;
+  --color-sidebar-primary-foreground: #fafafa;
+  --color-sidebar-accent: #f0f0f0;
+  --color-sidebar-accent-foreground: #1a1a1a;
+  --color-sidebar-border: #d4d4d8;
+  --color-sidebar-ring: #3b82f6;
+
+  /* Granola Specific Colors */
+  --color-granola-primary-green: #4ADE80;
+  --color-granola-dark-green: #1F2937;
+  --color-granola-light-gray: #9CA3AF;
+  --color-granola-background-white: #FFFFFF;
+  --color-granola-background-gradient-start: #FEF3C7;
+  --color-granola-background-gradient-end: #D1FAE5;
+  --color-granola-card-border: #E5E7EB;
+  --color-granola-dark-gray: #374151; /* Derived from body text color */
+
+  /* Shadcn/UI Radii */
+  --radius-lg: 0.75rem; /* Adjusted to match design system's 12px for cards */
+  --radius-md: calc(0.75rem - 2px);
+  --radius-sm: calc(0.75rem - 4px);
+
+  /* Granola Specific Radii */
+  --radius-card: 0.75rem; /* 12px */
+  --radius-button: 1.5rem; /* 24px */
+  --radius-element: 0.5rem; /* 8px */
+
+  /* Shadcn/UI Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  /* Granola Specific Fonts */
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-brand: "Inter", sans-serif; /* Assuming Inter for brand name based on screenshots */
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: #e5e5e5;
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-body);
+  }
+}
+
+@layer base {
+  :root {
+    /* Shadcn/UI Colors */
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+    --sidebar-background: var(--color-sidebar);
+    --sidebar-foreground: var(--color-sidebar-foreground);
+    --sidebar-primary: var(--color-sidebar-primary);
+    --sidebar-primary-foreground: var(--color-sidebar-primary-foreground);
+    --sidebar-accent: var(--color-sidebar-accent);
+    --sidebar-accent-foreground: var(--color-sidebar-accent-foreground);
+    --sidebar-border: var(--color-sidebar-border);
+    --sidebar-ring: var(--color-sidebar-ring);
+
+    /* Granola Specific Colors */
+    --granola-primary-green: var(--color-granola-primary-green);
+    --granola-dark-green: var(--color-granola-dark-green);
+    --granola-light-gray: var(--color-granola-light-gray);
+    --granola-background-white: var(--color-granola-background-white);
+    --granola-background-gradient-start: var(--color-granola-background-gradient-start);
+    --granola-background-gradient-end: var(--color-granola-background-gradient-end);
+    --granola-card-border: var(--color-granola-card-border);
+    --granola-dark-gray: var(--color-granola-dark-gray);
+
+    /* Shadcn/UI Radius */
+    --radius: var(--radius-lg); /* Default radius for shadcn components */
+
+    /* Granola Specific Radii */
+    --radius-card: var(--radius-card);
+    --radius-button: var(--radius-button);
+    --radius-element: var(--radius-element);
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--granola-dark-green);
+  }
+
+  h1 {
+    font-size: 3.75rem; /* 60px */
+    font-weight: 700; /* bold */
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: 2.5rem; /* 40px */
+    font-weight: 600; /* medium */
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 2rem; /* 32px */
+    font-weight: 600; /* medium */
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400; /* regular */
+    color: var(--granola-dark-gray);
+    line-height: 1.5;
+  }
+
+  .text-secondary {
+    font-size: 1rem; /* 16px */
+    font-weight: 400; /* regular */
+    color: var(--granola-light-gray);
+  }
+
+  .btn-text {
+    font-size: 1rem; /* 16px */
+    font-weight: 500; /* medium */
+    color: var(--granola-background-white);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2.5rem; /* 40px */
+    padding-right: 2.5rem; /* 40px */
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
