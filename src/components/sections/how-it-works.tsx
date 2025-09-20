@@ -1,89 +1,120 @@
 "use client";
 
-import { Sparkles, Mic } from "lucide-react";
+import { cn } from "@/lib/utils";
+import {
+  IconSparkles,
+  IconCategory,
+  IconBook2,
+  IconUsers,
+  IconMessageChatbot,
+  IconBuildingBank,
+} from "@tabler/icons-react";
+import React from "react";
 
-const WindowControls = () => (
-  <div className="flex items-center w-full space-x-2">
-    <div className="w-2.5 h-2.5 rounded-full bg-red-400 border border-red-500"></div>
-    <div className="w-2.5 h-2.5 rounded-full bg-yellow-300 border border-yellow-400"></div>
-    <div className="w-2.5 h-2.5 rounded-full bg-green-400 border border-green-500"></div>
-  </div>
-);
+const features = [
+  {
+    title: "AI-Powered Parsing",
+    description:
+      "Automatically extract every line item from your receipts with industry-leading accuracy.",
+    icon: <IconSparkles size={24} />,
+  },
+  {
+    title: "Smart Categorization",
+    description:
+      "Our AI learns your spending habits and suggests expense categories, saving you manual effort.",
+    icon: <IconCategory size={24} />,
+  },
+  {
+    title: "Double-Entry Ledger",
+    description:
+      "Maintain compliant, audit-proof books with an automated double-entry system running in the background.",
+    icon: <IconBook2 size={24} />,
+  },
+  {
+    title: "Collaborative Accounting",
+    description:
+      "Invite your accountant and team members to collaborate in real-time, with role-based permissions.",
+    icon: <IconUsers size={24} />,
+  },
+  {
+    title: "AI-Assistant Reporting",
+    description:
+      "Ask for financial summaries, spending reports, or vendor totals in plain language and get instant answers.",
+    icon: <IconMessageChatbot size={24} />,
+  },
+  {
+    title: "Automated Bank Reconciliation",
+    description:
+      "Connect your bank accounts and let Quant automatically match transactions with your receipts.",
+    icon: <IconBuildingBank size={24} />,
+  },
+];
 
-const SoundBarsIcon = ({ className }: { className?: string }) => (
-  <div className={`flex justify-center items-center w-6 h-6 gap-px ${className}`}>
-    <div className="bg-green-500 rounded-full w-[3px] h-2"></div>
-    <div className="bg-green-500 rounded-full w-[3px] h-3.5"></div>
-    <div className="bg-green-500 rounded-full w-[3px] h-2.5"></div>
-  </div>
-);
+const Feature = ({
+  title,
+  description,
+  icon,
+  index,
+}: {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  index: number;
+}) => {
+  return (
+    <div
+      className={cn(
+        "flex flex-col py-10 relative group/feature border-b border-border",
+        "md:border-r",
+        (index === 0 || index === 3) && "md:border-l",
+        (index === 2 || index === 5) && "md:border-r-0",
+        index >= 3 && "md:border-b-0",
+        "lg:border-b",
+        (index === 2 || index === 5) && "lg:border-r",
+        index < 3 && "lg:border-b",
+        index >= 3 && "lg:border-b-0"
+      )}
+    >
+      {index < 3 && (
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-secondary to-transparent pointer-events-none" />
+      )}
+      {index >= 3 && (
+        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-secondary to-transparent pointer-events-none" />
+      )}
+      
+      <div className="mb-4 relative z-10 px-10 text-primary">
+        {icon}
+      </div>
+      <div className="text-lg font-bold mb-2 relative z-10 px-10">
+        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-border group-hover/feature:bg-blue-500 transition-all duration-200 origin-center" />
+        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-primary">
+          {title}
+        </span>
+      </div>
+      <p className="text-sm text-muted-foreground max-w-xs relative z-10 px-10">
+        {description}
+      </p>
+    </div>
+  );
+};
 
 const HowItWorksSection = () => {
   return (
-    <section className="relative w-full max-w-3xl px-4 py-16 mx-auto sm:px-6 md:py-24 lg:py-20 lg:px-8 lg:max-w-6xl grid gap-2 items-stretch lg:gap-6 lg:grid-cols-2">
-      <div className="flex flex-col col-span-full gap-4 mx-auto max-w-2xl text-center mb-8 lg:gap-8">
-        <h2 className="text-3xl font-bold leading-[0.95] tracking-[-0.015em] text-balance text-granola-dark-green lg:text-5xl">
-          How it works
-        </h2>
-      </div>
-
-      <div className="relative flex flex-col gap-4 p-6 overflow-hidden border rounded-xl shadow-lg bg-white">
-        <div className="absolute inset-0 z-[-1] select-none transform scale-x-[-1] bg-[radial-gradient(ellipse_at_top_right,var(--color-granola-background-gradient-start)_0%,transparent_50%)] opacity-20"></div>
-        <h2 className="text-xl font-semibold lg:text-2xl text-granola-dark-gray">
-          Granola is like Apple Notes, but it also&nbsp;&nbsp;
-          <span className="inline-flex relative items-baseline">
-            <span className="absolute inset-y-0 -inset-x-1 rounded-full bg-green-100"></span>
-            <span className="relative z-10 flex items-center pl-2 py-0.5">
-              <SoundBarsIcon />
-              <span className="pl-1 pr-2 font-semibold text-green-700">transcribes</span>
-            </span>
-          </span>
-          &nbsp;&nbsp;your meeting
-        </h2>
-        <div className="flex-1"></div>
-        <div className="relative overflow-hidden bg-white rounded-lg shadow-lg -mb-8 border w-full aspect-square md:aspect-[4/3]">
-          <div className="flex justify-between items-center p-2.5 w-full h-10 border-b">
-            <WindowControls />
-          </div>
-          <div className="relative px-8 py-2 w-full text-sm font-sans space-y-1 text-gray-800">
-            <p>100, growingg</p>
-            <p>Use tuesday.ai, v manual</p>
-            <p>180</p>
-            <p>&nbsp;</p>
-            <p className="flex items-center">
-              "a priority for q2"
-              <span className="inline-block w-0.5 h-7 ml-0.5 rounded-full bg-granola-primary-green animate-pulse"></span>
-            </p>
-          </div>
-          <div className="absolute bottom-4 left-1/2 z-10 flex gap-3 items-center p-2.5 bg-white rounded-full border shadow-lg transition-all transform -translate-x-1/2">
-            <SoundBarsIcon />
-            <Mic className="mr-1 w-5 h-5 text-gray-400" />
-          </div>
+    <section className="py-16 md:py-24 lg:py-20 w-full bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col col-span-full gap-4 mx-auto max-w-2xl text-center mb-12 lg:gap-8">
+          <h2 className="text-3xl font-bold leading-[0.95] tracking-[-0.015em] text-balance text-primary lg:text-5xl">
+            Everything you need, nothing you don’t
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            From automated data entry to real-time reports, Quant is the all-in-one platform for your F&B business.
+          </p>
         </div>
-      </div>
 
-      <div className="relative flex flex-col gap-4 p-6 overflow-hidden border rounded-xl shadow-lg bg-white">
-        <div className="absolute inset-0 z-[-1] select-none bg-[radial-gradient(ellipse_at_top_left,var(--color-granola-background-gradient-end)_0%,transparent_50%)] opacity-20"></div>
-        <h2 className="text-xl font-semibold lg:text-2xl text-granola-dark-gray">
-          When the meeting ends, Granola&nbsp;&nbsp;
-          <span className="inline-flex relative items-baseline">
-            <span className="absolute inset-y-0 -inset-x-1 rounded-full bg-green-100"></span>
-            <span className="relative z-10 flex items-center pl-2 py-0.5">
-              <Sparkles className="w-5 h-5 text-green-500" />
-              <span className="pl-1 pr-2 font-semibold text-green-700">enhances</span>
-            </span>
-          </span>
-          &nbsp;&nbsp;the notes you've written
-        </h2>
-        <div className="flex-1"></div>
-        <div className="overflow-hidden bg-white rounded-lg shadow-lg -mb-8 w-full border aspect-square md:aspect-[4/3]">
-          <div className="flex justify-between items-center p-2.5 w-full h-10 border-b">
-            <WindowControls />
-          </div>
-          <video className="-mt-2 w-full h-auto" autoPlay loop muted playsInline>
-            <source src="/homepageAssets/enhancing-looper.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10 border-t border-border md:border-t-0">
+          {features.map((feature, index) => (
+            <Feature key={feature.title} {...feature} index={index} />
+          ))}
         </div>
       </div>
     </section>

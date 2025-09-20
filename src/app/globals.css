@@ -50,15 +50,8 @@
   --color-sidebar-border: #d4d4d8;
   --color-sidebar-ring: #3b82f6;
 
-  /* Granola Specific Colors */
-  --color-granola-primary-green: #4ADE80;
-  --color-granola-dark-green: #1F2937;
-  --color-granola-light-gray: #9CA3AF;
-  --color-granola-background-white: #FFFFFF;
-  --color-granola-background-gradient-start: #FEF3C7;
-  --color-granola-background-gradient-end: #D1FAE5;
-  --color-granola-card-border: #E5E7EB;
-  --color-granola-dark-gray: #374151; /* Derived from body text color */
+  /* Quant Brand Colors */
+  --color-brand-blue: #2563eb; /* Trusted Blue */
 
   /* Shadcn/UI Radii */
   --radius-lg: 0.75rem; /* Adjusted to match design system's 12px for cards */
@@ -157,15 +150,8 @@
     --sidebar-border: var(--color-sidebar-border);
     --sidebar-ring: var(--color-sidebar-ring);
 
-    /* Granola Specific Colors */
-    --granola-primary-green: var(--color-granola-primary-green);
-    --granola-dark-green: var(--color-granola-dark-green);
-    --granola-light-gray: var(--color-granola-light-gray);
-    --granola-background-white: var(--color-granola-background-white);
-    --granola-background-gradient-start: var(--color-granola-background-gradient-start);
-    --granola-background-gradient-end: var(--color-granola-background-gradient-end);
-    --granola-card-border: var(--color-granola-card-border);
-    --granola-dark-gray: var(--color-granola-dark-gray);
+    /* Quant Brand Colors */
+    --brand-blue: var(--color-brand-blue);
 
     /* Shadcn/UI Radius */
     --radius: var(--radius-lg); /* Default radius for shadcn components */
@@ -188,7 +174,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    color: var(--granola-dark-green);
+    color: var(--color-primary);
   }
 
   h1 {
@@ -212,20 +198,14 @@
   p {
     font-size: 1.125rem; /* 18px */
     font-weight: 400; /* regular */
-    color: var(--granola-dark-gray);
+    color: var(--color-foreground);
     line-height: 1.5;
   }
 
   .text-secondary {
     font-size: 1rem; /* 16px */
     font-weight: 400; /* regular */
-    color: var(--granola-light-gray);
-  }
-
-  .btn-text {
-    font-size: 1rem; /* 16px */
-    font-weight: 500; /* medium */
-    color: var(--granola-background-white);
+    color: var(--color-muted-foreground);
   }
 
   .container {

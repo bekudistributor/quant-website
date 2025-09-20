@@ -1,6 +1,16 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import Image from 'next/image';
+
+const QuantLogo = () => (
+  <Image
+    src="/assets/Quant logo.svg"
+    alt="Quant Logo"
+    width={103}
+    height={28}
+    className="h-8 w-auto"
+  />
+);
 
 // Using inline SVGs for the social icons for simplicity and control.
 const XIcon = ({ className }: { className?: string }) => (
@@ -17,38 +27,37 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 
 const linkColumns = [
   {
+    title: 'Product',
     links: [
-      { name: 'App', href: '/app', type: 'internal' },
-      { name: 'Mobile', href: '/mobile', type: 'internal' },
-      { name: 'Pricing', href: '/pricing', type: 'internal' },
-      { name: 'Blog', href: '/blog', type: 'internal' },
-      { name: 'Careers', href: '/jobs', type: 'internal' },
+      { name: 'Features', href: '/#features' },
+      { name: 'Pricing', href: '/pricing' },
+      { name: 'Book a Demo', href: '/book-a-demo' },
+      { name: 'Blog', href: '/blog' },
     ],
   },
   {
+    title: 'Company',
     links: [
-      { name: 'Help Center', href: '/help', type: 'internal' },
-      { name: 'Contact us', href: 'mailto:help@granola.ai', type: 'external' },
-      { name: 'Enterprise', href: '/enterprise', type: 'internal' },
-      { name: 'Security & Privacy', href: '/security', type: 'internal' },
-      { name: 'Status page', href: 'https://status.granola.ai', type: 'external' },
+      { name: 'About Us', href: '/about' },
+      { name: 'Careers', href: '/jobs' },
+      { name: 'Contact Us', href: 'mailto:hello@quant.so' },
     ],
   },
   {
+    title: 'Legal',
     links: [
-      { name: 'Privacy Policy', href: '/privacy', type: 'internal' },
-      { name: 'Terms of Service', href: '/terms', type: 'internal' },
-      { name: 'Press kit', href: '/press-kit.zip', type: 'external' },
-      { name: 'Affiliates', href: '/affiliates', type: 'internal' },
-      { name: 'License', href: '/license', type: 'internal' },
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Service', href: '/terms' },
     ],
   },
 ];
 
-const RenderLink = ({ link }: { link: { name: string; href: string; type: string } }) => {
-  const className = "text-foreground transition-colors hover:text-granola-primary-green";
-  if (link.type === 'external') {
-    return <a href={link.href} className={className} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}>{link.name}</a>;
+const RenderLink = ({ link }: { link: { name: string; href: string } }) => {
+  const className = "text-foreground transition-colors hover:text-[var(--brand-blue)]";
+  const isExternal = link.href.startsWith('http') || link.href.startsWith('mailto');
+  
+  if (isExternal) {
+    return <a href={link.href} className={className} target="_blank" rel="noopener noreferrer">{link.name}</a>;
   }
   return <Link href={link.href} className={className}>{link.name}</Link>;
 };
@@ -60,36 +69,32 @@ export default function Footer() {
         <div className="flex flex-col justify-between gap-12 md:flex-row md:items-start">
           <div className="flex flex-col gap-6">
             <Link href="/" aria-label="Home">
-              <Image 
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/4b549735-8d48-46cb-9944-8f198d02a4b5-granola-ai/assets/icons/icon-15.png?" 
-                alt="Granola logo" 
-                width={24} 
-                height={24}
-                className="h-6 w-auto"
-              />
+              <QuantLogo />
             </Link>
             <div className="flex flex-col gap-1 text-sm text-muted-foreground">
-              <span>© Granola inc 2025</span>
-              <span>Made with ♥ in Shoreditch</span>
+              <span>© Quant Inc. 2025</span>
             </div>
           </div>
           
           <div className="flex flex-col gap-8 sm:flex-row sm:justify-end sm:gap-16">
             <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-3">
-              {linkColumns.map((column, colIndex) => (
-                <div key={colIndex} className="flex flex-col gap-3">
-                  {column.links.map((link) => (
-                    <RenderLink key={link.name} link={link} />
-                  ))}
+              {linkColumns.map((column) => (
+                <div key={column.title} className="flex flex-col gap-4">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-primary">{column.title}</h3>
+                  <div className="flex flex-col gap-3">
+                    {column.links.map((link) => (
+                      <RenderLink key={link.name} link={link} />
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
 
             <div className="flex items-start gap-4 text-muted-foreground">
-              <a href="https://www.linkedin.com/company/granola-ai/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-foreground">
+              <a href="https://www.linkedin.com/company/quant-so/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-foreground">
                 <LinkedInIcon className="h-5 w-5" />
               </a>
-              <a href="https://x.com/meetgranola" target="_blank" rel="noopener noreferrer" aria-label="X" className="transition-colors hover:text-foreground">
+              <a href="https://x.com/quant-so" target="_blank" rel="noopener noreferrer" aria-label="X" className="transition-colors hover:text-foreground">
                 <XIcon className="h-5 w-5" />
               </a>
             </div>
