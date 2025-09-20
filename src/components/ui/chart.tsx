@@ -3,10 +3,14 @@
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
+import { type TooltipProps } from "recharts"
+
 import { cn } from "@/lib/utils"
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const
+type NameType = string
+type ValueType = number
 
 export type ChartConfig = {
   [k in string]: {
@@ -118,7 +122,7 @@ function ChartTooltipContent({
   color,
   nameKey,
   labelKey,
-}: React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
+}: TooltipProps<ValueType, NameType> &
   React.ComponentProps<"div"> & {
     hideLabel?: boolean
     hideIndicator?: boolean
